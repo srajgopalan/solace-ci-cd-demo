@@ -1,0 +1,59 @@
+---
+ - hosts: solace
+   connection: local
+   gather_facts: false
+   pre_tasks:
+    - include_vars: vars/solace-env.yml
+
+   tasks:
+
+   - name: Create VPN
+     include_role:
+      name: create-vpn
+     vars:
+      vpn: "{{ message_vpn }}"
+
+   - name: Create Client Profiles
+     with_items: "{{ client_profiles }}"
+     include_role:
+      name: create-client-profile
+     vars:
+      cp: "{{ item }}"
+      vpn: "{{ message_vpn.vpn_name }}"
+
+   - name: Create ACL Profiles
+     with_items: "{{ acl_profiles }}"
+     include_role:
+      name: create-acl-profile
+     vars:
+      acl: "{{ item }}"
+      vpn: "{{ message_vpn.vpn_name }}"
+
+   - name: Create Client Usernames
+     with_items: "{{ client_usernames }}"
+     include_role:
+      name: create-client-username
+     vars:
+      cu: "{{ item }}"
+      vpn: "{{ message_vpn.vpn_name }}"
+
+   - name: Create Queues
+     with_items: "{{ queues }}"
+     include_role:
+      name: create-queue
+     vars:
+      q: "{{ queue }}"
+      vpn: "{{ message_vpn.vpn_name }}"
+     loop_control:
+      loop_var: queue
+
+   - name: Create Queue Subscriptions
+     with_subelements: 
+      - "{{ queues }}"
+      - subscription_topics
+     include_role:
+      name: create-queue-subscription
+     vars:
+      q: "{{ item.0.queue_name }}"
+      topic: "{{ item.1 }}"
+      vpn: "{{ message_vpn.vpn_name }}"

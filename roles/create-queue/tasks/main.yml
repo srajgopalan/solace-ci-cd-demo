@@ -1,0 +1,34 @@
+---
+- name: Create Queue "{{ q.queue_name }}"
+  uri:
+   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues"
+   method: POST
+   user: "{{ semp_username}}"
+   password: "{{ semp_password }}"
+   headers:
+    Content-Type: "application/json"
+   body:
+    queueName: "{{ q.queue_name }}"
+    ingressEnabled: "{{ q.ingress_enabled }}"
+    egressEnabled: "{{ q.egress_enabled }}"
+    permission: "{{ q.permission }}"
+    owner: "{{ q.owner }}"
+   body_format: json
+   force_basic_auth: yes
+   status_code: 200,400
+   return_content: yes
+  register: result
+  ignore_errors: True
+  retries: 3
+  delay: 10
+
+- name: List Success for queue creation
+  debug:
+    var: result.msg
+  when: result.json.meta.responseCode == 200
+
+- name: List Failure for queue creation
+  debug:
+   var: result.json.meta.error.status
+  when: result.json.meta.responseCode != 200
+

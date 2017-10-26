@@ -1,0 +1,2 @@
+vars:
+ max_connections = 50

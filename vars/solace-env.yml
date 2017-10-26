@@ -1,0 +1,62 @@
+---
+#message-vpn
+message_vpn:
+ vpn_name: "first_vpn"
+ authentication_type: "internal"
+ enabled: true
+ max_connections: 50
+#client-profiles
+client_profiles:
+- client_profile_name: "first_cp"
+- client_profile_name: "second_cp"
+#acl-profiles
+acl_profiles:
+- acl_profile_name: "first_acl"
+- acl_profile_name: "second_acl"
+#client-usernames
+client_usernames:
+- client_username_name: "first_cu"
+  client_profile_name: "first_cp"
+  acl_profile_name: "first_acl"
+  password: "first_cu"
+  enabled: true
+- client_username_name: "second_cu"
+  client_profile_name: "second_cp"
+  acl_profile_name: "second_acl"
+  password: "second_cu"
+  enabled: true
+#queues
+queues:
+- queue_name: queue1
+  subscription_topics:
+  - "topic/1/>"
+  - "topic/2/>"
+  - "topic/3/>"
+  - "topic/4/>"
+  access_type: "non-exclusive"
+  owner: "first_cu"
+  ingress_enabled: true
+  egress_enabled: true
+  permission: "consume"
+- queue_name: queue2
+  subscription_topics:
+  - "topic/1/>"
+  - "topic/2/>"
+  - "topic/3/>"
+  - "topic/4/>"
+  access_type: "exclusive" 
+  owner: "second_cu"
+  ingress_enabled: true
+  egress_enabled: true
+  permission: "read-only"
+- queue_name: queue3
+  subscription_topics:
+  - "topic/1/>"
+  - "topic/2/>"
+  - "topic/3/>"
+  - "topic/4/>"
+  access_type: "non-exclusive"
+  owner: "first_cu"
+  ingress_enabled: true
+  egress_enabled: true
+  permission: "consume"

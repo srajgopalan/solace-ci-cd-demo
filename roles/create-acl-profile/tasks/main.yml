@@ -1,0 +1,32 @@
+---
+- name: Create ACL Profile "{{ acl.acl_profile_name }}"
+  uri:
+   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns/{{ vpn }}/aclProfiles"
+   method: POST
+   user: "{{ semp_username}}"
+   password: "{{ semp_password }}"
+   headers:
+    Content-Type: "application/json"
+   body:
+    aclProfileName: "{{ acl.acl_profile_name }}"
+    clientConnectDefaultAction: allow
+    publishTopicDefaultAction: allow
+    subscribeTopicDefaultAction: allow
+   body_format: json
+   force_basic_auth: yes
+   status_code: 200,400
+   return_content: yes
+  register: result
+  ignore_errors: True
+  retries: 3
+  delay: 10
+
+- name: List Success for ACL creation
+  debug:
+    var: result.msg
+  when: result.json.meta.responseCode == 200
+
+- name: List Failure for ACL creation
+  debug:
+   var: result.json.meta.error.status
+  when: result.json.meta.responseCode != 200
