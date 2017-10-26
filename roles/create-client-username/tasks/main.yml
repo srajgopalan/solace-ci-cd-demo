@@ -22,12 +22,7 @@
   retries: 3
   delay: 10
 
-- name: List Success for Username creation
-  debug:
-    var: result.msg
-  when: result.json.meta.responseCode == 200
-
-- name: List Failure for Username creation
+- name: Error in Client-Username creation?
   debug:
    var: result.json.meta.error.status
   when: result.json.meta.responseCode != 200

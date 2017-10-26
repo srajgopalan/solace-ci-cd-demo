@@ -21,12 +21,7 @@
   retries: 3
   delay: 10
 
-- name: List Success for ACL creation
-  debug:
-    var: result.msg
-  when: result.json.meta.responseCode == 200
-
-- name: List Failure for ACL creation
+- name: Error in ACL Profile creation?
   debug:
    var: result.json.meta.error.status
   when: result.json.meta.responseCode != 200

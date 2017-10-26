@@ -23,12 +23,7 @@
   retries: 0
   delay: 10
 
-- name: List Success for VPN creation
-  debug:
-   var: result.msg
-  when: result.json.meta.responseCode == 200
-
-- name: List Failures for VPN creation
+- name: Error in VPN Creation?
   debug:
     var: result.json.meta.error.status
   when: result.json.meta.responseCode != 200
