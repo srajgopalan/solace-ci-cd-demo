@@ -4,15 +4,17 @@ message_vpn:
  vpn_name: "jenkins1_vpn"
  authentication_type: "internal"
  enabled: true
- max_connections: 50
+
 #client-profiles
 client_profiles:
 - client_profile_name: "first_cp"
 - client_profile_name: "second_cp"
+
 #acl-profiles
 acl_profiles:
 - acl_profile_name: "first_acl"
 - acl_profile_name: "second_acl"
+
 #client-usernames
 client_usernames:
 - client_username_name: "first_cu"
@@ -25,6 +27,7 @@ client_usernames:
   acl_profile_name: "second_acl"
   password: "second_cu"
   enabled: true
+
 #queues
 queues:
 - queue_name: queue1
