@@ -1,7 +1,7 @@
 ---
 - name: Create Message-vpn "{{ vpn.vpn_name }}"
   uri:
-   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns"
+   url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns"
    method: POST
    user: "{{ semp_username }}"
    password: "{{ semp_password }}"

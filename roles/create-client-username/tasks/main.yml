@@ -1,7 +1,7 @@
 ---
 - name: Create Client Username "{{ cu.client_username_name }}"
   uri:
-   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientUsernames"
+   url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientUsernames"
    method: POST
    user: "{{ semp_username }}"
    password: "{{ semp_password }}"

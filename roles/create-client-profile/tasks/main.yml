@@ -1,7 +1,7 @@
 ---
 - name: Create Client Profile "{{ cp.client_profile_name }}"
   uri:
-   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientProfiles"
+   url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientProfiles"
    method: POST
    user: "{{ semp_username }}"
    password: "{{ semp_password }}"

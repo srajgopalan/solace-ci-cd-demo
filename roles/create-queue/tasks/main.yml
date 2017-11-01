@@ -1,7 +1,7 @@
 ---
 - name: Create Queue "{{ q.queue_name }}"
   uri:
-   url: "http://{{ mgmt_ip }}:{{ port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues"
+   url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues"
    method: POST
    user: "{{ semp_username}}"
    password: "{{ semp_password }}"
