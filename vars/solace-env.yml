@@ -1,7 +1,7 @@
 ---
 #message-vpn
 message_vpn:
- vpn_name: "first_vpn"
+ vpn_name: "jenkins1_vpn"
  authentication_type: "internal"
  enabled: true
  max_connections: 50
