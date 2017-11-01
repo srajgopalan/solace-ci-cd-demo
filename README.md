@@ -115,7 +115,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Authors
 
-See the list of [contributors](https://github.com/srajgopalan/solace-ci-cd-demo/contributors) who participated in this project.
+- Shrikanth Rajgopalan
+
+See also the list of [contributors](https://github.com/srajgopalan/solace-ci-cd-demo/contributors) who participated in this project.
 
 ## License
 
