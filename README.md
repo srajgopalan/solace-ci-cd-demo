@@ -29,7 +29,7 @@ If the objects already exist, this is indicated in the playbook output. It is no
  
 Object properties can be specified in a configuration file
 
-*placeholder for picture here*
+![CI Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CI.jpg "Continuous Integration using Anisble and SEMPv2")
 
 ### Pre-requisites
 
@@ -77,7 +77,7 @@ In order to run the Ansible playbook, use:
 
 The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. 
 
-*placeholder for picture here*
+![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
 
 *Desribe the pipeline here.
 The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger our Ansible playbook. *
