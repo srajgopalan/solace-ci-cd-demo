@@ -98,7 +98,7 @@ The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger ou
 
 ### Live Demo
 
-Visit the [Solace APAC Jenkins Demo] (http://sgdemo.solace.com/jenkins/solace-ci-cd-demo) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+Visit the [Solace APAC Jenkins] (http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
 
 Contact your Solace Account Manager for a Live Demo!
 
