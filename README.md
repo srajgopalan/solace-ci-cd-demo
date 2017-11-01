@@ -79,8 +79,8 @@ The Continuous Integration demo can now be integrated with Jenkins for setting u
 
 *placeholder for picture here*
 
-Desribe the pipeline here.
-The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger our Ansible playbook. 
+*Desribe the pipeline here.
+The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger our Ansible playbook. *
 
 ### Pre-requisites
 
@@ -98,7 +98,11 @@ The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger ou
 
 ### Live Demo
 
-Visit the [Solace APAC Jenkins Demo] (http://sgdemo.solace.com/jenkins/solace-ci-cd-demo) to view details of the Jenkins Job. Contact your Solace Account Manager for a Live Demo!
+Visit the [Solace APAC Jenkins Demo] (http://sgdemo.solace.com/jenkins/solace-ci-cd-demo) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+
+Contact your Solace Account Manager for a Live Demo!
+
+__NOTE:__ If any configuration is removed, the Ansible playbook does not delete the corresponding configurations from the Solace router
 
 ## Built With
 
