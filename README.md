@@ -15,7 +15,9 @@ __NOTE:__ The sample has been created to illustrate how SEMPv2 can be used to in
 
 ## Contents
 
-This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
+This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. Ansible's [URI](http://docs.ansible.com/ansible/latest/uri_module.html) is used to interact with the SEMPv2 API. 
+
+For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
 
 The sample can be used for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
 
@@ -69,7 +71,7 @@ __NOTE:__ Do not edit the `solace-vars` group or its contents
 __NOTE:__ 
 
 - The current version of this sample does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
-- The sample currently does not have the feature to remove any message-vpns, when they are removed from the configuration file, and this operation will have to be performed manually.
+- The sample currently does not have the feature to remove any message-vpns when they are removed from the configuration file.This operation will have to be performed manually.
 
 ### Running the Demo:
 
@@ -79,36 +81,32 @@ In order to run the Ansible playbook, use:
 
 ## Integrating with a Continuous Delivery System
 
-The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. This can be achieved
+The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. The below figure shows a sample CD pipeline, using Git, Jenkins and Ansible - I've chosen them as they are the common DevOps tools for CD, but you can replace parts or all of these with whatever tools you use. 
 
 ![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
 
-*Desribe the pipeline here.
-The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger our Ansible playbook. *
+I've set up a job in Jenkins for this project, which will be triggered every time code is checked in to the Git repository. The Jenkins job triggers the Ansible playbook, which uses SEMP to create the messaging environment as specified in the config files.
 
-### Pre-requisites
+Finally, after the creation of the messaging environment, Jenkins triggers another jobs to pull the Solace Javascript Samples and deploys them to our web server. You can then run the Solace Javascript samples against your newly provisioned messaging environment! 
 
-1. Install Jenkins
-2. Install Ansible Plugin 
-3. Install GIT Integration Plugin
-4. ...
-
-
-### High Level Steps for CD Integration
-
-1. Create a Jenkins Job and configure it to point to the GIThub repo
-1. Make some changes to the Github repo and boom!
-
+In summary, when a change is made to the GIT repo, this will trigger Jenkinks to create your messaging environment on Solace, and then deploy your app (Solace Javascript samples, in my case) - As Jürgen Klopp says, BOOM!
 
 ### Live Demo
 
-Visit the [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+Visit the [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job ('solace-ci-cd-demo') has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
 
 Once the Solace environment has been created, this triggers a second job which will pull the solclient JS samples from Github and deploy them to the sgdemo web server. Click [here](http://sgdemo.solace.com/solclientjs-7.2.1) to try out the newly deployed Solclient samples.
 
 Contact your Solace Account Manager for a Live Demo!
 
 __NOTE:__ If any configuration is removed, the Ansible playbook does not delete the corresponding configurations from the Solace router
+
+## Reproducing the CD Demo:
+
+As the material for setting up the CD demo is publicly available, here are some references:
+
+1. Trigger a Jenkins Job using a GIT push: [GIT Integration plugin](https://wiki.jenkins.io/display/JENKINS/GitHub+Integration+Plugin)
+2. Run Ansible playbooks in Jenkins: [Ansible Plugin for Jenkins](https://wiki.jenkins.io/display/JENKINS/Ansible+Plugin)
 
 ## Built With
 
