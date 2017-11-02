@@ -81,19 +81,19 @@ In order to run the Ansible playbook, use:
 
 ## Integrating with a Continuous Delivery System
 
-The Continuous Integration demo can now be integrated with Jenkins and Git for setting up a Continuous Delivery System. The below figure shows a sample CD pipeline, using Git, Jenkins and Ansible - I've chosen them as they are the common DevOps tools for CD, but you can replace parts or all of these with whatever tools you use. 
+The Continuous Integration demo can now be integrated with Jenkins and Git for setting up a Continuous Delivery System. The below figure shows a sample CD pipeline, using Git, Jenkins and Ansible - I've chosen them as they are the common DevOps tools for CD, but you can replace parts or all of these with whatever tooling you use. 
 
 ![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
 
-I've set up a job in Jenkins for this project, which will be triggered every time code is checked in to the Git repository. The Jenkins job triggers the Ansible playbook, which uses SEMP to create the messaging environment as specified in the config files.
+I've set up a job in Jenkins for this project, which will be triggered every time code is checked in to the Git repository, using a Githuub Webhook. The Jenkins job runs the Ansible playbook, which uses SEMPv2 to create the messaging environment as specified in the config files.
 
-Finally, after the creation of the messaging environment, Jenkins triggers another jobs to pull the Solace Javascript Samples and deploys them to our web server. You can then run the Solace Javascript samples against your newly provisioned messaging environment! 
+Finally, after the creation of the messaging environment, Jenkins triggers another job to pull the Solace Javascript Samples and deploys them to our web server. You can then run the Solace Javascript samples against your newly provisioned messaging environment! 
 
-In summary, when a change is made to the GIT repo, this will trigger Jenkinks to create your messaging environment on Solace, and then deploy your app (Solace Javascript samples, in my case) - As Jürgen Klopp says, BOOM!
+In summary, when I do a Git push, this will trigger Jenkins to create my messaging environment on Solace, and then deploy my app (Solace Javascript samples, in my case) - As Jürgen Klopp says, BOOM!
 
 ### Live Demo
 
-Visit the [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job ('solace-ci-cd-demo') has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+Visit [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins job ('solace-ci-cd-demo') has been created and configured such that any changes to the configuration in GitHub (such as adding new queues/users) will trigger the job to create the corresponding Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
 
 Once the Solace environment has been created, this triggers a second job which will pull the solclient JS samples from Github and deploy them to the sgdemo web server. Click [here](http://sgdemo.solace.com/solclientjs-7.2.1) to try out the newly deployed Solclient samples.
 
