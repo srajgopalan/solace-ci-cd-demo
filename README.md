@@ -28,9 +28,7 @@ The ansible playbook uses Solace's SEMPv2 Management API to create a new Solace 
 - Client Usernames
 - Queue Endpoints
 
-If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration file
-
-The sample currently does not have the feature to remove any message-vpns, when they are removed from the configuration file, and this operation will have to be performed manually.
+If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration files.
 
 ![CI Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CI.jpg "Continuous Integration using Anisble and SEMPv2")
 
@@ -68,7 +66,10 @@ __NOTE:__ Do not edit the `solace-vars` group or its contents
 - One or more Client Usernames within the message-vpn
 - One or more Queues within the message-vpn, with topic subscriptions on these queues
 
-__NOTE:__ The current version of this sample does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
+__NOTE:__ 
+
+- The current version of this sample does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
+- The sample currently does not have the feature to remove any message-vpns, when they are removed from the configuration file, and this operation will have to be performed manually.
 
 ### Running the Demo:
 
@@ -78,9 +79,7 @@ In order to run the Ansible playbook, use:
 
 ## Integrating with a Continuous Delivery System
 
-__NOTE: This section still needs to be written up properly__
-
-The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. 
+The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. This can be achieved
 
 ![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
 
