@@ -1,6 +1,10 @@
 # Using Solace's SEMPv2 to integrate with CI/CD pipelines
 
-This sample demostrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. There are two ways you can get started:
+This sample demostrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. 
+
+__NOTE:__ The sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.
+
+There are two ways you can get started:
 
 - If your company has Solace message routers deployed, contact your middleware team to obtain the host name or IP address of a Solace message router to test against, a username and password to access it, and a VPN in which you can produce and consume messages.
 - If you do not have access to a Solace message router, you will need to go through the “[Set up a VMR](http://docs.solace.com/Solace-VMR-Set-Up/Setting-Up-VMRs.htm)” tutorial to download and install the software.
@@ -9,25 +13,22 @@ Ensure that you are running a version of SolOS that supports the SEMPv2 manageme
 - Virtual Message Router: SolOS 7.2.1
 - Message Router Appliance: SolOS 7.2.2
 
-__NOTE:__ This sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.
-
 ## Contents
 
-This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment. For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
+This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
 
 The sample can be used as-is for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
 
 ## Automated provisioning in a CI environment
 
-The ansible playbook uses Solace's SEMPv2 Management API to create a new Solace message-vpn along with associated objects:
+The ansible playbook uses Solace's SEMPv2 Management API to create a new Solace message-vpn on an existing Solace message router along with associated objects:
+
 - Client Profiles
 - ACL Profiles
 - Client Usernames
 - Queue Endpoints
 
-If the objects already exist, this is indicated in the playbook output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task.
- 
-Object properties can be specified in a configuration file
+If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration file
 
 ![CI Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CI.jpg "Continuous Integration using Anisble and SEMPv2")
 
@@ -46,7 +47,7 @@ To check out the project and build it, do the following:
  
 ### Configuring the Demo:
 
-1. __Edit the ansible inventory__: Edit the inventory.ini to specify the Solace routers on which the messaging environment is to be created. The host running the samples should be able to reach the management IP of the Solace router. You can create one or more host groups against which the Ansible playbook will be run. 
+1. __Edit the Ansible inventory__: Edit the inventory.ini to specify the Solace routers on which the messaging environment is to be created. You can create one or more host groups against which the Ansible playbook will be run. 
 
 For example:
 
@@ -65,7 +66,7 @@ __NOTE:__ Do not edit the `solace-vars` group or its contents
 - One or more Client Usernames within the message-vpn
 - One or more Queues within the message-vpn, with topic subscriptions on these queues
 
-__NOTE:__ The current version of this demo does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on the build of your environment.
+__NOTE:__ The current version of this sample does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
 
 ### Running the Demo:
 
@@ -100,7 +101,9 @@ The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger ou
 
 ### Live Demo
 
-Visit the [Solace APAC Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+Visit the [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins Job has been created and configured such that any changes to the Solace environment configuration (such as adding new queues/users) will trigger the job to create the additional Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
+
+Once the Solace environment has been created, this triggers a second job which will pull the solclient JS samples from Github and deploy them to the sgdemo web server. Click [here](http://sgdemo.solace.com/solclientjs-7.2.1) to try out the newly deployed Solclient samples.
 
 Contact your Solace Account Manager for a Live Demo!
 
@@ -110,6 +113,7 @@ __NOTE:__ If any configuration is removed, the Ansible playbook does not delete 
 
 - [Ansible](https://www.ansible.com) - Simple IT Automation, Configuration Management and Orchestration
 - [SEMPv2](https://docs.solace.com/SEMP/SEMP-Home.htm) - Solace's RESTful Administration API 
+- [Jenkins](https://jenkins.io/) - Open Source Automation Server
 
 ## Contributing
 
