@@ -2,8 +2,6 @@
 
 This sample demostrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. 
 
-__NOTE:__ The sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.
-
 There are two ways you can get started:
 
 - If your company has Solace message routers deployed, contact your middleware team to obtain the host name or IP address of a Solace message router to test against, a username and password to access it, and a VPN in which you can produce and consume messages.
@@ -13,11 +11,13 @@ Ensure that you are running a version of SolOS that supports the SEMPv2 manageme
 - Virtual Message Router: SolOS 7.2.1
 - Message Router Appliance: SolOS 7.2.2
 
+__NOTE:__ The sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.
+
 ## Contents
 
 This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
 
-The sample can be used as-is for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
+The sample can be used for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
 
 ## Automated provisioning in a CI environment
 
@@ -29,6 +29,8 @@ The ansible playbook uses Solace's SEMPv2 Management API to create a new Solace 
 - Queue Endpoints
 
 If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration file
+
+The sample currently does not have the feature to remove any message-vpns, when they are removed from the configuration file, and this operation will have to be performed manually.
 
 ![CI Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CI.jpg "Continuous Integration using Anisble and SEMPv2")
 
