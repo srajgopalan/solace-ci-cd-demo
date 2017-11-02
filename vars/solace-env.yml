@@ -1,32 +1,32 @@
 ---
 #message-vpn
 message_vpn:
- vpn_name: "srajgopalan_vpn"
+ vpn_name: "psgdemo_vpn"
  authentication_type: "internal"
  enabled: true
  serviceWebPlainTextEnabled: true
 
 #client-profiles
 client_profiles:
-- client_profile_name: "first_cp"
-- client_profile_name: "second_cp"
+- client_profile_name: "foo_cp"
+- client_profile_name: "bar_cp"
 
 #acl-profiles
 acl_profiles:
-- acl_profile_name: "first_acl"
-- acl_profile_name: "second_acl"
+- acl_profile_name: "foo_acl"
+- acl_profile_name: "bar_acl"
 
 #client-usernames
 client_usernames:
-- client_username_name: "first_cu"
-  client_profile_name: "first_cp"
-  acl_profile_name: "first_acl"
-  password: "first_cu"
+- client_username_name: "foo_cu"
+  client_profile_name: "foo_cp"
+  acl_profile_name: "foo_acl"
+  password: "foo_cu"
   enabled: true
-- client_username_name: "second_cu"
-  client_profile_name: "second_cp"
-  acl_profile_name: "second_acl"
-  password: "second_cu"
+- client_username_name: "bar_cu"
+  client_profile_name: "bar_cp"
+  acl_profile_name: "bar_acl"
+  password: "bar_cu"
   enabled: true
 
 #queues
@@ -44,10 +44,10 @@ queues:
   permission: "consume"
 - queue_name: queue2
   subscription_topics:
-  - "topic/1/>"
-  - "topic/2/>"
-  - "topic/3/>"
-  - "topic/4/>"
+  - "topic/5/>"
+  - "topic/6/>"
+  - "topic/7/>"
+  - "topic/8/>"
   access_type: "exclusive" 
   owner: "second_cu"
   ingress_enabled: true
