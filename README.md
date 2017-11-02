@@ -11,7 +11,7 @@ Ensure that you are running a version of SolOS that supports the SEMPv2 manageme
 - Virtual Message Router: SolOS 7.2.1
 - Message Router Appliance: SolOS 7.2.2
 
-__NOTE:__ The sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.
+_NOTE: The sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other production readiness considerations as necessary.__
 
 ## Contents
 
