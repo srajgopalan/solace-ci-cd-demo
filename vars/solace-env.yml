@@ -4,6 +4,7 @@ message_vpn:
  vpn_name: "sims_vpn"
  authentication_type: "internal"
  enabled: true
+ serviceWebPlainTextEnabled: true
 
 #client-profiles
 client_profiles:
