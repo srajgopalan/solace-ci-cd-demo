@@ -14,6 +14,7 @@
     maxConnectionCount: 10
     maxMsgSpoolUsage: 100
     maxSubscriptionCount: 500
+    serviceWebPlainTextEnabled: "{{ vpn.serviceWebPlainTextEnabled }}"
    body_format: json
    force_basic_auth: yes
    status_code: 200,400
