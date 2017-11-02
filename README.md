@@ -95,7 +95,7 @@ In summary, when I do a Git push, this will trigger Jenkins to create my messagi
 
 Visit [Solace SGDemo Jenkins](http://sgdemo.solace.com/jenkins/job/solace-ci-cd-demo/) - A Jenkins job ('solace-ci-cd-demo') has been created and configured such that any changes to the configuration in GitHub (such as adding new queues/users) will trigger the job to create the corresponding Solace configuration. As indicated previously, the Ansible playbook does not attempt to re-create existing objects - they will simply be logged as "ALREADY_EXISTS"
 
-Once the Solace environment has been created, this triggers a second job which will pull the solclient JS samples from Github and deploy them to the sgdemo web server. Click [here](http://sgdemo.solace.com/solclientjs-7.2.1) to try out the newly deployed Solclient samples.
+Once the Solace environment has been created, this triggers a second job which will pull the solclient JS samples from Github and deploy them to the sgdemo web server. Click [here](http://sgdemo.solace.com/solclientjs) to try out the newly deployed Solclient samples.
 
 Contact your Solace Account Manager for a Live Demo!
 
