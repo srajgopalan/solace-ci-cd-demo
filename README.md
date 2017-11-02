@@ -1,6 +1,6 @@
 # Using Solace's SEMPv2 to integrate with CI/CD pipelines
 
-This sample demonstrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. There are two ways you can get started:
+This sample demostrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. There are two ways you can get started:
 
 - If your company has Solace message routers deployed, contact your middleware team to obtain the host name or IP address of a Solace message router to test against, a username and password to access it, and a VPN in which you can produce and consume messages.
 - If you do not have access to a Solace message router, you will need to go through the “[Set up a VMR](http://docs.solace.com/Solace-VMR-Set-Up/Setting-Up-VMRs.htm)” tutorial to download and install the software.
@@ -9,13 +9,13 @@ Ensure that you are running a version of SolOS that supports the SEMPv2 manageme
 - Virtual Message Router: SolOS 7.2.1
 - Message Router Appliance: SolOS 7.2.2
 
+__NOTE:__ This sample has been created to illustrate how SEMPv2 can be used to integrate Solace with a CI/CD pipeline. You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other operational readiness considerations as necessary.
+
 ## Contents
 
 This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment. For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
 
 The sample can be used as-is for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
-
-You may need to modify the samples to align with your custom environment, as well as apply security, hardening and other operational readiness considerations as necessary. 
 
 ## Automated provisioning in a CI environment
 
