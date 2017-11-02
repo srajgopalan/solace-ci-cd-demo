@@ -15,7 +15,7 @@ __NOTE: The sample has been created to illustrate how SEMPv2 can be used to inte
 
 ## Contents
 
-This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. Ansible's [URI](http://docs.ansible.com/ansible/latest/uri_module.html) is used to interact with the SEMPv2 API. 
+This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. Ansible's [URI](http://docs.ansible.com/ansible/latest/uri_module.html) module is used to interact with the SEMPv2 API. 
 
 For a nice introduction to the SEMPv2 Management API , check out this [blog](https://solace.com/blog/products-tech/introducing-semp-v2-solace-message-routers-configuration-reinvented), as well as the [SEMP tutorials home page](http://dev.solace.com/get-started/semp-tutorials/)
 
@@ -70,7 +70,7 @@ __NOTE:__ Do not edit the `solace-vars` group or its contents
 
 __NOTE:__ 
 
-- The current version of this sample does not support the externalization of all the configuration properties. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
+- The current version of this sample does not support the externalization of all the configuration properties for the Solace environment. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
 - The sample currently does not have the feature to remove any message-vpns when they are removed from the configuration file.This operation will have to be performed manually.
 
 ### Running the Demo:
@@ -81,7 +81,7 @@ In order to run the Ansible playbook, use:
 
 ## Integrating with a Continuous Delivery System
 
-The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. The below figure shows a sample CD pipeline, using Git, Jenkins and Ansible - I've chosen them as they are the common DevOps tools for CD, but you can replace parts or all of these with whatever tools you use. 
+The Continuous Integration demo can now be integrated with Jenkins and Git for setting up a Continuous Delivery System. The below figure shows a sample CD pipeline, using Git, Jenkins and Ansible - I've chosen them as they are the common DevOps tools for CD, but you can replace parts or all of these with whatever tools you use. 
 
 ![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
 
