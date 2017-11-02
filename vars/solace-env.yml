@@ -1,7 +1,7 @@
 ---
 #message-vpn
 message_vpn:
- vpn_name: "psgdemo_vpn"
+ vpn_name: "psg_vpn"
  authentication_type: "internal"
  enabled: true
  serviceWebPlainTextEnabled: true
