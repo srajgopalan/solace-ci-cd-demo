@@ -75,6 +75,8 @@ In order to run the Ansible playbook, use:
 
 ## Integrating with a Continuous Delivery System
 
+__NOTE: This section still needs to be written up properly__
+
 The Continuous Integration demo can now be integrated with Jenkins for setting up a Continuous Delivery System. 
 
 ![CD Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CD.jpg "Continuous Delivery using Git, Jenkins, Anisble and SEMPv2")
@@ -87,11 +89,11 @@ The Jenkins Ansible plugin can be used to create a job in Jenkins, to trigger ou
 1. Install Jenkins
 2. Install Ansible Plugin 
 3. Install GIT Integration Plugin
+4. ...
 
 
 ### High Level Steps for CD Integration
 
-1. Fork the Github project
 1. Create a Jenkins Job and configure it to point to the GIThub repo
 1. Make some changes to the Github repo and boom!
 
