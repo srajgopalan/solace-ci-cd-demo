@@ -53,3 +53,14 @@ queues:
   ingress_enabled: true
   egress_enabled: true
   permission: "read-only"
+  - queue_name: queue3
+  subscription_topics:
+  - "topic/9/>"
+  - "topic/10/>"
+  - "topic/11/>"
+  - "topic/12/>"
+  access_type: "exclusive" 
+  owner: "second_cu"
+  ingress_enabled: true
+  egress_enabled: true
+  permission: "read-only"
