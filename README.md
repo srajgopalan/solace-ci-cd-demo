@@ -1,6 +1,6 @@
 # Using Solace's SEMPv2 to integrate with CI/CD pipelines
 
-This sample demostrates how you can use Solace's SEMPv2 management API to integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. 
+This sample demostrates how you can use Solace's SEMPv2 management API to perform automated provisioning of Solace configuration, as well as integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. 
 
 There are two ways you can get started:
 
