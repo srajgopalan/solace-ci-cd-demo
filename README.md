@@ -15,7 +15,7 @@ __NOTE: The sample has been created to illustrate how SEMPv2 can be used to inte
 
 ## Contents
 
-[Ansible](https://www.ansible.com/) is an open source tool for automating tasks such as application deployment, IT service orchestration, cloud provisioning and many more. Ansible is easy to deploy, does not use any agents, and has a simple learning curve. Ansible uses "playbooks" to describe its automation jobs, known as "tasks" and the playbook is described using YAML.
+[Ansible](https://www.ansible.com/) is an open source tool for automating tasks such as application deployment, IT service orchestration, cloud provisioning and many more. Ansible is easy to deploy, does not use any agents, and has a simple learning curve. Ansible uses "playbooks" to describe its automation jobs, known as "tasks" and the playbooks are described using YAML.
 
 This repository contains an ansible playbook which uses the Solace SEMPv2 RESTful administration API to create a new messaging environment on an existing Solace message router. Ansible's [URI](http://docs.ansible.com/ansible/latest/uri_module.html) module is used to interact with the SEMPv2 API. 
 
