@@ -47,7 +47,7 @@ To check out the project and build it, do the following:
   1. clone this GitHub repository
   2. `cd solace-ci-cd-demo`
  
-### Configuring the Demo:
+### Configuring the CI Demo:
 
 1. __Edit the Ansible inventory__: Edit the inventory.ini to specify the Solace routers on which the messaging environment is to be created. You can create one or more host groups against which the Ansible playbook will be run. 
 
@@ -73,7 +73,7 @@ __NOTE:__
 - The current version of this sample does not support the externalization of all the configuration properties for the Solace environment. Only some properties are specified in the configuration files, and more properties can be added along with appropriate changes to your ansible playbook, depending on your environment.
 - The sample currently does not have the feature to remove any message-vpns when they are removed from the configuration file.This operation will have to be performed manually.
 
-### Running the Demo:
+### Running the CI Demo:
 
 In order to run the Ansible playbook, use:
 
