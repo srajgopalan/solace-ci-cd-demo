@@ -1,5 +1,8 @@
 ---
-- name: Create Client Username "{{ cu.client_username_name }}"
+- name: Compose SEMPv2 request payload for Client Username "{{ cu.clientUsername }}"
+  template: src=templates/create-client-username.json.j2 dest=files/create-client-username.json
+
+- name: Create Client Username "{{ cu.clientUsername }}"
   uri:
    url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientUsernames"
    method: POST
@@ -7,20 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    clientUsername: "{{ cu.client_username_name }}"
-    aclProfileName: "{{ cu.acl_profile_name }}"
-    clientProfileName: "{{ cu.client_profile_name }}"
-    enabled: true
-    password: "{{ cu.password }}"
+   body: '{{ lookup("file","files/create-client-username.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
   retries: 3
-  delay: 10
+  delay: 1
 
 - name: Error in Client-Username creation?
   debug:

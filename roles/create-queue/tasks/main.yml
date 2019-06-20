@@ -1,5 +1,8 @@
 ---
-- name: Create Queue "{{ q.queue_name }}"
+- name: Compose SEMPv2 request payload for Queue "{{ q.queueName }}"
+  template: src=templates/create-queue.json.j2 dest=files/create-queue.json
+
+- name: Create Queue "{{ q.queueName }}"
   uri:
    url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues"
    method: POST
@@ -7,20 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    queueName: "{{ q.queue_name }}"
-    ingressEnabled: "{{ q.ingress_enabled }}"
-    egressEnabled: "{{ q.egress_enabled }}"
-    permission: "{{ q.permission }}"
-    owner: "{{ q.owner }}"
+   body: '{{ lookup("file","files/create-queue.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
   retries: 3
-  delay: 10
+  delay: 1
 
 - name: Error in Queue creation?
   debug:

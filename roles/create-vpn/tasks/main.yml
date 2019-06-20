@@ -1,5 +1,8 @@
 ---
-- name: Create Message-vpn "{{ vpn.vpn_name }}"
+- name: Compose SEMPv2 request payload for VPN "{{ vpn.msgVpnName }}"
+  template: src=templates/create-vpn.json.j2 dest=files/create-vpn.json
+
+- name: Create Message-vpn "{{ vpn.msgVpnName }}"
   uri:
    url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns"
    method: POST
@@ -7,22 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    msgVpnName: "{{ vpn.vpn_name }}"
-    authenticationBasicType: "internal"
-    enabled: true
-    maxConnectionCount: 10
-    maxMsgSpoolUsage: 100
-    maxSubscriptionCount: 500
-    serviceWebPlainTextEnabled: "{{ vpn.serviceWebPlainTextEnabled }}"
+   body: '{{ lookup("file","files/create-vpn.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
-  retries: 0
-  delay: 10
+  retries: 3
+  delay: 1
 
 - name: Error in VPN Creation?
   debug:

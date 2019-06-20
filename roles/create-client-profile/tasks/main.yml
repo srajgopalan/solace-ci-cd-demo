@@ -1,5 +1,8 @@
 ---
-- name: Create Client Profile "{{ cp.client_profile_name }}"
+- name: Compose SEMPv2 request payload for Client Profile "{{ cp.clientProfileName }}"
+  template: src=templates/create-client-profile.json.j2 dest=files/create-client-profile.json
+
+- name: Create Client Profile "{{ cp.clientProfileName }}"
   uri:
    url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/clientProfiles"
    method: POST
@@ -7,18 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    clientProfileName: "{{ cp.client_profile_name }}"
-    allowGuaranteedMsgReceiveEnabled: true
-    allowGuaranteedMsgSendEnabled: true
+   body: '{{ lookup("file","files/create-client-profile.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
-  retries: 0
-  delay: 3
+  retries: 3
+  delay: 1
 
 - name: Error in Client Profile creation?
   debug:

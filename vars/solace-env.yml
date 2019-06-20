@@ -1,66 +1,87 @@
 ---
 #message-vpn
 message_vpn:
- vpn_name: "psgdemo_vpn"
- authentication_type: "internal"
+ msgVpnName: "srAwesome_vpn"
+ authenticationBasicType: "internal"
  enabled: true
- serviceWebPlainTextEnabled: true
+ maxConnectionCount: 60
+ maxSubscriptionCount: 200
+ eventLargeMsgThreshold: 2048
+ maxEgressFlowCount: 100
+ maxEndpointCount: 100
+ maxIngressFlowCount: 100
+ maxTransactedSessionCount: 100
+ maxTransactionCount: 100
+ maxMsgSpoolUsage: 1000
 
 #client-profiles
 client_profiles:
-- client_profile_name: "foo_cp"
-- client_profile_name: "bar_cp"
+- clientProfileName: "foo_cp"
+  allowGuaranteedMsgReceiveEnabled: true
+  allowGuaranteedMsgSendEnabled: true
+- clientProfileName: "bar_cp"
+  allowGuaranteedMsgReceiveEnabled: true
+  allowGuaranteedMsgSendEnabled: true
 
 #acl-profiles
 acl_profiles:
-- acl_profile_name: "foo_acl"
-- acl_profile_name: "bar_acl"
+- aclProfileName: "foo_acl"
+  clientConnectDefaultAction: "allow"
+  publishTopicDefaultAction: "disallow"
+  subscribeTopicDefaultAction: "allow"
+- aclProfileName: "bar_acl"
+  clientConnectDefaultAction: "allow"
+  publishTopicDefaultAction: "disallow"
+  subscribeTopicDefaultAction: "disallow"
 
 #client-usernames
 client_usernames:
-- client_username_name: "foo_cu"
-  client_profile_name: "foo_cp"
-  acl_profile_name: "foo_acl"
+- clientUsername: "foo_cu"
+  clientProfileName: "foo_cp"
+  aclProfileName: "foo_acl"
   password: "foo_cu"
   enabled: true
-- client_username_name: "bar_cu"
-  client_profile_name: "bar_cp"
-  acl_profile_name: "bar_acl"
+- clientUsername: "bar_cu"
+  clientProfileName: "bar_cp"
+  aclProfileName: "bar_acl"
   password: "bar_cu"
   enabled: true
 
 #queues
 queues:
-- queue_name: queue1
+- queueName: queue1
   subscription_topics:
   - "topic/1/>"
   - "topic/2/>"
   - "topic/3/>"
   - "topic/4/>"
-  access_type: "non-exclusive"
-  owner: "first_cu"
-  ingress_enabled: true
-  egress_enabled: true
+  accessType: "non-exclusive"
+  owner: "foo_cu"
+  ingressEnabled: true
+  egressEnabled: true
   permission: "consume"
-- queue_name: queue2
+  maxMsgSpoolUsage: 100
+- queueName: queue2
   subscription_topics:
   - "topic/5/>"
   - "topic/6/>"
   - "topic/7/>"
   - "topic/8/>"
-  access_type: "exclusive" 
-  owner: "second_cu"
-  ingress_enabled: true
-  egress_enabled: true
+  accessType: "exclusive" 
+  owner: "bar_cu"
+  ingressEnabled: true
+  egressEnabled: true
   permission: "read-only"
-- queue_name: queue3
+  maxMsgSpoolUsage: 130
+- queueName: queue3
   subscription_topics:
   - "topic/5/>"
   - "topic/6/>"
   - "topic/7/>"
   - "topic/8/>"
-  access_type: "exclusive" 
-  owner: "second_cu"
-  ingress_enabled: true
-  egress_enabled: true
+  accessType: "exclusive" 
+  owner: "foo_cu"
+  ingressEnabled: true
+  egressEnabled: true
   permission: "read-only"
+  maxMsgSpoolUsage: 250

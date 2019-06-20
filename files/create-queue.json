@@ -1,0 +1,9 @@
+{
+ "queueName": "queue3",
+ "ingressEnabled": True ,
+ "egressEnabled": True ,
+ "permission": "read-only" ,
+ "owner": "foo_cu" ,
+ "accessType": "exclusive",
+ "maxMsgSpoolUsage": 250
+}

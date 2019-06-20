@@ -1,5 +1,8 @@
 ---
-- name: Create ACL Profile "{{ acl.acl_profile_name }}"
+- name: Compose SEMPv2 request payload for ACL Profile "{{ acl.aclProfileName }}"
+  template: src=templates/create-acl-profile.json.j2 dest=files/create-acl-profile.json
+
+- name: Create ACL Profile "{{ acl.aclProfileName }}"
   uri:
    url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/aclProfiles"
    method: POST
@@ -7,19 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    aclProfileName: "{{ acl.acl_profile_name }}"
-    clientConnectDefaultAction: allow
-    publishTopicDefaultAction: allow
-    subscribeTopicDefaultAction: allow
+   body: '{{ lookup("file","files/create-acl-profile.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
   retries: 3
-  delay: 10
+  delay: 1
 
 - name: Error in ACL Profile creation?
   debug:

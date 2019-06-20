@@ -19,7 +19,7 @@
       name: create-client-profile
      vars:
       cp: "{{ item }}"
-      vpn: "{{ message_vpn.vpn_name }}"
+      vpn: "{{ message_vpn.msgVpnName }}"
 
    - name: Create ACL Profiles
      with_items: "{{ acl_profiles }}"
@@ -27,7 +27,7 @@
       name: create-acl-profile
      vars:
       acl: "{{ item }}"
-      vpn: "{{ message_vpn.vpn_name }}"
+      vpn: "{{ message_vpn.msgVpnName }}"
 
    - name: Create Client Usernames
      with_items: "{{ client_usernames }}"
@@ -35,7 +35,7 @@
       name: create-client-username
      vars:
       cu: "{{ item }}"
-      vpn: "{{ message_vpn.vpn_name }}"
+      vpn: "{{ message_vpn.msgVpnName }}"
 
    - name: Create Queues
      with_items: "{{ queues }}"
@@ -43,7 +43,7 @@
       name: create-queue
      vars:
       q: "{{ queue }}"
-      vpn: "{{ message_vpn.vpn_name }}"
+      vpn: "{{ message_vpn.msgVpnName }}"
      loop_control:
       loop_var: queue
 
@@ -54,6 +54,6 @@
      include_role:
       name: create-queue-subscription
      vars:
-      q: "{{ item.0.queue_name }}"
-      topic: "{{ item.1 }}"
-      vpn: "{{ message_vpn.vpn_name }}"
+      q: "{{ item.0.queueName }}"
+      subscriptionTopic: "{{ item.1 }}"
+      vpn: "{{ message_vpn.msgVpnName }}"

@@ -1,5 +1,8 @@
 ---
-- name: Add Queue Subscription "{{ topic }}" to queue "{{ q }}"
+- name: Compose SEMPv2 request payload for creating subscription on Queue "{{ q }}"
+  template: src=templates/create-queue-subscription.json.j2 dest=files/create-queue-subscription.json
+
+- name: Add Queue Subscription "{{ subscriptionTopic }}" to queue "{{ q }}"
   uri:
    url: "http://{{ mgmt_host }}: {{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues/{{ q }}/subscriptions"
    method: POST
@@ -7,16 +10,15 @@
    password: "{{ semp_password }}"
    headers:
     Content-Type: "application/json"
-   body:
-    subscriptionTopic: "{{ topic }}"
+   body: '{{ lookup("file","files/create-queue-subscription.json") }}'
    body_format: json
    force_basic_auth: yes
-   status_code: 200,400
+   status_code: 200
    return_content: yes
   register: result
   ignore_errors: True
   retries: 3
-  delay: 10
+  delay: 1
 
 - name: Error in Queue subscription addition?
   debug:

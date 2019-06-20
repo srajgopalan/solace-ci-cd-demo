@@ -1,0 +1,5 @@
+{
+ "clientProfileName": "bar_cp",
+ "allowGuaranteedMsgReceiveEnabled": True,
+ "allowGuaranteedMsgSendEnabled": True
+}

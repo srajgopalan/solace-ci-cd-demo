@@ -1,0 +1,15 @@
+{
+ "msgVpnName": "srAnsibleFinal_vpn",
+ "authenticationBasicType": "internal",
+ "enabled": True,
+ "maxConnectionCount": 60,
+ "maxMsgSpoolUsage": 1000,
+ "maxSubscriptionCount": 200,
+ "eventLargeMsgThreshold": 2048,
+ "maxEgressFlowCount": 100,
+ "maxEndpointCount": 100,
+ "maxIngressFlowCount": 100,
+ "maxMsgSpoolUsage": 1000,
+ "maxTransactedSessionCount": 100,
+ "maxTransactionCount": 100
+}

@@ -1,0 +1,7 @@
+{
+ "clientUsername": "bar_cu",
+ "aclProfileName": "bar_acl",
+ "clientProfileName": "bar_cp",
+ "enabled": True,
+ "password": "bar_cu"
+}

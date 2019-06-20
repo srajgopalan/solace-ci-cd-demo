@@ -1,0 +1,6 @@
+{
+ "aclProfileName": "bar_acl",
+ "clientConnectDefaultAction": "allow",
+ "publishTopicDefaultAction": "disallow",
+ "subscribeTopicDefaultAction": "disallow"
+}
