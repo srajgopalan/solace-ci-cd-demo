@@ -21,16 +21,16 @@ For a nice introduction to the SEMPv2 Management API , check out this [blog](htt
 
 The sample can be used for automated deployment of your Solace messaging environments for Continuous Integration. Additionally, you can integrate this into your pipeline for Continuous Deployments. This is explained in the subsequent sections.
 
-## Automated provisioning in a CI environment
+## Automated provisioning in a CI environment using Ansible
 
-The ansible playbook uses Solace's SEMPv2 Management API to create a new Solace message-vpn on an existing Solace message router along with associated objects:
+Using Ansible, you can automatically provision configuration on the Solace router. The Ansible playbook consists of a number of tasks, and each task uses Solace's SEMPv2 Management API to create a new Solace message-vpn on an existing Solace message router along with associated objects:
 
 - Client Profiles
 - ACL Profiles
 - Client Usernames
 - Queue Endpoints
 
-If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration files.
+If the objects already exist, this is indicated in the playbook run's output. It is not treated as a failure of the Ansible task, and the playbook execution continues to to the next task. Object properties can be specified in a configuration files.
 
 ![CI Flow Diagram](https://github.com/srajgopalan/solace-ci-cd-demo/blob/master/images/CI.jpg "Continuous Integration using Anisble and SEMPv2")
 
