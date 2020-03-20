@@ -1,4 +1,4 @@
-# Using Solace's SEMPv2 to integrate with CI/CD pipelines
+# Using Solace's SEMPv2 to integrate with CI/CD pipelines using Ansible and Jenkins
 
 This sample demostrates how you can use Solace's SEMPv2 management API to perform automated provisioning of Solace configuration, as well as integrate the automated provisioning of your Solace environment with your CI/CD Pipeline. 
 
