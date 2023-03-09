@@ -4,7 +4,7 @@
 
 - name: Add Queue Subscription "{{ subscriptionTopic }}" to queue "{{ q }}"
   uri:
-   url: "http://{{ mgmt_host }}: {{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues/{{ q }}/subscriptions"
+   url: "http://{{ mgmt_host }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns/{{ vpn }}/queues/{{ q }}/subscriptions"
    method: POST
    user: "{{ semp_username }}"
    password: "{{ semp_password }}"
